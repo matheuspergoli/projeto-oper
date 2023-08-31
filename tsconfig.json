@@ -25,6 +25,7 @@
 			"@libs/*": ["./src/libs/*"],
 			"@shared/*": ["./src/shared/*"],
 			"@context/*": ["./src/context/*"],
+			"@actions/*": ["./src/actions/*"],
 			"@provider/*": ["./src/provider/*"],
 			"@components/*": ["./src/components/*"],
 			"@environment/*": ["./src/environment/*"]

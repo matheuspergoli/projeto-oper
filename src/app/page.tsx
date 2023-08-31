@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { getPosts } from '@actions/getPosts'
 import { ArticleCard } from '@components/ArticleCard'
 import { PaginationControls } from '@components/PaginationControls'
 
@@ -14,16 +15,12 @@ export default async function Home({ searchParams }: HomeProps) {
 	const start = (Number(page) - 1) * Number(limit)
 	// const end = start + Number(limit)
 
-	const response = await fetch(
-		`https://news-api.lublot.dev/api/posts?_page=${page}&_limit=${limit}`
-	)
-
-	const data = (await response.json()) as Article[]
+	const posts = await getPosts(page as string, limit as string)
 
 	return (
 		<main className='container my-10'>
 			<section className='mb-10 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
-				{data.map((article) => (
+				{posts.map((article) => (
 					<Link key={article.id} href={`/post/${article.id}`}>
 						<ArticleCard
 							title={article.title}
@@ -37,7 +34,7 @@ export default async function Home({ searchParams }: HomeProps) {
 			</section>
 
 			<PaginationControls
-				hasNextPage={data.length !== 21}
+				hasNextPage={posts.length !== 21}
 				hasPreviousPage={start === 0}
 			/>
 		</main>

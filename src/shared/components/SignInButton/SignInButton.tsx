@@ -17,7 +17,7 @@ export const SignInButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			<Comp
 				onClick={() => {
 					setLoading(true)
-					signIn('github', { callbackUrl: '/' })
+					signIn('github')
 				}}
 				className={cn(buttonVariants({ variant, size, className }))}
 				ref={ref}

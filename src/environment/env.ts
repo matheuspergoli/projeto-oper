@@ -1,8 +1,5 @@
 export const env = {
 	DATABASE_URL: process.env.DATABASE_URL as string,
-	CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
-	CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
-	CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
 	NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET as string,
 	NEXTAUTH_URL: process.env.NEXTAUTH_URL as string,
 	GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID as string,

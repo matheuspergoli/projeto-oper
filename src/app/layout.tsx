@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
+import { Toaster } from '@shared/ui/toaster'
 import { Provider } from '@provider/Provider'
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						</p>
 					</div>
 				</footer>
+				<Toaster />
 			</body>
 		</html>
 	)

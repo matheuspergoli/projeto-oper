@@ -1,47 +1,45 @@
-import { placeholderBlurhash } from '@libs/utils'
-import { BlurImage } from '@shared/components/BlurImage'
+import Link from 'next/link'
+import { ArticleCard } from '@components/ArticleCard'
+import { PaginationControls } from '@components/PaginationControls'
 
-type Tag = string
-
-type Article = {
-	id: string
-	title: string
-	content: string
-	author: string
-	published: string
-	coverImage: string
-	tags: Tag[]
+interface HomeProps {
+	searchParams: {
+		[key: string]: string | string[] | undefined
+	}
 }
 
-export default async function Page() {
-	const response = await fetch('https://news-api.lublot.dev/api/posts?_limit=10')
-	const json = (await response.json()) as Article[]
+export default async function Home({ searchParams }: HomeProps) {
+	const page = searchParams['page'] ?? '1'
+	const limit = searchParams['limit'] ?? '21'
+	const start = (Number(page) - 1) * Number(limit)
+	// const end = start + Number(limit)
+
+	const response = await fetch(
+		`https://news-api.lublot.dev/api/posts?_page=${page}&_limit=${limit}`
+	)
+
+	const data = (await response.json()) as Article[]
 
 	return (
 		<main className='container my-10'>
-			<section className='grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-				{json.map((article) => (
-					<article
-						key={article.id}
-						className='flex flex-col items-center justify-center rounded-md border'>
-						<figure>
-							<BlurImage
-								src={article.coverImage}
-								alt={article.title}
-								width={300}
-								height={300}
-								placeholder='blur'
-								className='h-full w-full object-cover'
-								blurDataURL={placeholderBlurhash}
-							/>
-						</figure>
-						<h2 className='text-2xl font-bold'>{article.title}</h2>
-						<p className='text-xl'>{article.author}</p>
-						<p className='text-xl'>{article.published}</p>
-						<p className='text-xl'>{article.tags}</p>
-					</article>
+			<section className='mb-10 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>
+				{data.map((article) => (
+					<Link key={article.id} href={`/post/${article.id}`}>
+						<ArticleCard
+							title={article.title}
+							author={article.author}
+							published={article.published}
+							coverImage={article.coverImage}
+							tags={article.tags}
+						/>
+					</Link>
 				))}
 			</section>
+
+			<PaginationControls
+				hasNextPage={data.length !== 21}
+				hasPreviousPage={start === 0}
+			/>
 		</main>
 	)
 }

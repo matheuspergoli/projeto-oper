@@ -28,6 +28,7 @@
 			"@actions/*": ["./src/actions/*"],
 			"@provider/*": ["./src/provider/*"],
 			"@components/*": ["./src/components/*"],
+			"@validations/*": ["./src/validations/*"],
 			"@environment/*": ["./src/environment/*"]
 		}
 	},

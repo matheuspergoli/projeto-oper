@@ -2,7 +2,10 @@ import Link from 'next/link'
 import { format } from 'date-fns'
 import { getPost } from '@actions/getPost'
 import { getPosts } from '@actions/getPosts'
+import { Comment } from '@components/Comment'
 import { placeholderBlurhash } from '@libs/utils'
+import { getComments } from '@actions/getComments'
+import { CommentForm } from '@components/CommentForm'
 import { ArticleCard } from '@components/ArticleCard'
 import { BlurImage } from '@shared/components/BlurImage'
 
@@ -10,6 +13,7 @@ export default async function Post({ params }: { params: { id: string } }) {
 	const randomNumber = String(Math.floor(Math.random() * 10) + 1)
 	const post = await getPost(params.id)
 	const posts = await getPosts(randomNumber, '3')
+	const articleComments = await getComments(params.id)
 
 	return (
 		<main className='container my-10'>
@@ -36,11 +40,29 @@ export default async function Post({ params }: { params: { id: string } }) {
 				</figure>
 			</section>
 
-			<article className='prose-invert prose mx-auto mt-10 w-fit text-center'>
+			<article className='prose prose-invert mx-auto mt-10 w-fit text-center'>
 				{post.content.split('\n').map((paragraph, index) => (
 					<p key={index}>{paragraph}</p>
 				))}
 			</article>
+
+			<section className='mx-auto my-10 w-full max-w-md'>
+				<CommentForm />
+
+				<div className='mt-5 flex flex-col gap-3'>
+					{articleComments?.map((comment) => (
+						<Comment
+							key={comment.text}
+							commentId={comment.id!}
+							favoriteCommentId={comment.favoritesComments[0]?.userId ?? ''}
+							userName={comment.user.name!}
+							userImage={comment.user.image!}
+							text={comment.text}
+							replies={comment.replies!}
+						/>
+					))}
+				</div>
+			</section>
 
 			<h4 className='mb-5 mt-32 text-2xl font-bold'>Mais artigos</h4>
 			<section className='grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3'>

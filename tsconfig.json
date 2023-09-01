@@ -23,6 +23,7 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@libs/*": ["./src/libs/*"],
+			"@hooks/*": ["./src/hooks/*"],
 			"@shared/*": ["./src/shared/*"],
 			"@context/*": ["./src/context/*"],
 			"@actions/*": ["./src/actions/*"],

@@ -10,6 +10,14 @@
 - Prisma
 - MySQL
 - ZOD
+- Next Auth
+- Docker
+
+## Funcionalidades adicionais
+
+- Autenticação com Github
+- Paginação pelo servidor
+- Tratamento de imagens e blur durante fetch
 
 ## Como rodar o projeto
 

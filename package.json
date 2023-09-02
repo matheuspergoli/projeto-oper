@@ -5,6 +5,8 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "prisma generate && prisma db push && next build",
+		"prepare:linux": "npm install && sudo docker-compose up -d && npm run build && npm run start",
+		"preapre:windows": "npm install && docker-compose up -d && npm run build && npm run start",
 		"start": "next start",
 		"lint": "next lint",
 		"postinstall": "prisma generate"

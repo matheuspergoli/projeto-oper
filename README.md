@@ -22,16 +22,24 @@
 ## Como rodar o projeto
 
 - Clone o repositório
-- Copie o arquivo `.env.example` para `.env`
+- Copie o arquivo `.env.example` para um arquivo `.env`
 
-Linux:
+## Comandos Linux:
+
+Você pode usar o comando completo abaixo para rodar o projeto no Linux:
+
 ```bash
-npm install && sudo docker-compose up -d && npx prisma db push && npm run dev
+npm install && sudo docker-compose up -d && npm run build && npm run start
 ```
 
-Windows:
+Ou usar `npm run prepare:linux` que rodará os mesmos comandos acima.
+
+## Comandos Windows:
+
+Você pode usar o comando completo abaixo para rodar o projeto no Windows:
+
 ```bash
-npm install && docker-compose up -d && npx prisma db push && npm run dev
+npm install && docker-compose up -d && npm run build && npm run start
 ```
 
-Se precisar também utilize o comando `npx prisma generate` para gerar as tipagens do prisma.
+Ou usar `npm run prepare:windows` que rodará os mesmos comandos acima.

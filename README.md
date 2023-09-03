@@ -23,6 +23,7 @@ Banco de dados hospedado no [**PlanetScale**](https://planetscale.com/)
 
 - Autenticação com Github
 - Paginação pelo servidor
+- Página 404 para artigos não encontrados
 - Tratamento de imagens e blur durante fetch
 - Middleware para proteção de rotas autenticadas
 - Criação de uma simples dashboard onde é possível ver artigos comentados

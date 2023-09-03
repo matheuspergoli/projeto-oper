@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { format } from 'date-fns'
+import { notFound } from 'next/navigation'
 import { getPost } from '@actions/getPost'
 import { getPosts } from '@actions/getPosts'
 import { Comment } from '@components/Comment'
@@ -14,6 +15,10 @@ export default async function Post({ params }: { params: { id: string } }) {
 	const post = await getPost(params.id)
 	const posts = await getPosts(randomNumber, '3')
 	const articleComments = await getComments(params.id)
+
+	if (!post.id) {
+		notFound()
+	}
 
 	return (
 		<main className='container my-10'>

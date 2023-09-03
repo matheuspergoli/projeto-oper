@@ -62,7 +62,7 @@ model User {
   accounts Account[]
   sessions Session[]
 
-  role              UserRole          @default(USER)
+  role              UserRole          @default(ADMIN)
   comments          Comment[]
   favoritesComments FavoriteComment[]
   replies           Reply[]

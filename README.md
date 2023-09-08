@@ -1,11 +1,5 @@
 # Projeto MiniBlog - Processo Seletivo
 
-## **Deploy**
-
-O projeto está hospedado na Vercel e pode ser acessado através do link [**Miniblog Oper**](https://projeto-oper.vercel.app/)
-
-Banco de dados hospedado no [**PlanetScale**](https://planetscale.com/)
-
 ## Tecnologias utilizadas
 
 - NextJS 13 com App Dir
